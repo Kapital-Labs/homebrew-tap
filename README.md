@@ -13,10 +13,35 @@ kitrove --version
 kitrove --help
 ```
 
-This installs the signed CLI from `v0.1.0-rc.3`. It does not run a separate Kitrove
+This installs the signed CLI from `v0.1.0-rc.4.1`. It does not run a separate Kitrove
 installer, initialize Kitrove, or change harness configuration. If a `kitrove`
 binary already occupies the destination, resolve ownership explicitly; do not
 force an overwrite. Do not point `kitrove-installer` at this Brew-managed path.
+
+## Start the walkthrough
+
+```sh
+kitrove init
+```
+
+Choose first-computer setup, connect a second computer, combine local skills
+with an existing collection, or import selected items. Every change has a preview
+and confirmation. Revisit your setup with `kitrove configure`. Credentials and
+trust decisions stay local; applying skills is a separate confirmed step.
+See the [Getting Started guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.4.1/docs/GETTING-STARTED.md).
+
+For an existing Homebrew installation:
+
+```sh
+brew update
+brew upgrade --cask kapital-labs/tap/kitrove-rc
+kitrove --version
+kitrove configure
+```
+
+Finish pending application transactions before downgrading to RC3, which cannot
+recover the newer nested-home application layout. Do not delete your collection
+or local state to restart the walkthrough.
 
 Remove the executable with:
 
@@ -35,20 +60,24 @@ reviewing package changes. This is different from running Kitrove's offline
 attestation verifier on every consumer installation. Quarantine and Gatekeeper
 remain enabled; do not disable them to work around a launch failure.
 
-RC3 installation, conflict refusal, version/help and removal passed on an existing
-Apple Silicon Mac in an isolated, non-default Homebrew prefix. This does not prove
-clean-Mac online/offline first launch, Intel Mac, Linux, Windows or Brew upgrades.
+RC3 installation followed by RC4.1 upgrade, removal, fresh RC4.1 installation and
+removal passed on an existing Apple Silicon Mac in an isolated Homebrew prefix.
+Each launch followed independent provenance, exact executable digest, native
+signature, notarization and quarantine checks. Synthetic collection and harness
+canaries remained unchanged. Earlier RC3 conflict-refusal evidence remains scoped
+to RC3. These checks do not prove clean-Mac online/offline first launch, Intel Mac,
+Linux, Windows, or preservation of every populated real-user state layout.
 First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
 ## Release review
 
-- Release: [v0.1.0-rc.3](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.3)
-- Source: `4212327d45097c1826e64a0a8f6e556c40bffc7f`
-- Release run: [37640833426](https://github.com/Kapital-Labs/kitrove/actions/runs/37640833426)
-- Archive SHA-256: `49229e4d6c0eee3f7f711c42b50274a24a29dfa90768b1cedbed21e16b44b28e`
-- Executable SHA-256: `0dad5b176d6502c207ce317f636cfe38afd494f50e9707696a86803981bcc034`
+- Release: [v0.1.0-rc.4.1](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.4.1)
+- Source: `173baff3dc6594e452e6b28b1d468fa4ecd6c6e5`
+- Release run: [38469919728](https://github.com/Kapital-Labs/kitrove/actions/runs/38469919728)
+- Archive SHA-256: `8f659d5727b9e035a628ab4d989a798b31e6526943d5cb042276787da576b61d`
+- Executable SHA-256: `ff4a7eaf30909999489ec475189d13218700add55c38518f8126a4704dd6f493`
 - Package preparation and acceptance: [Kitrove PR #53](https://github.com/Kapital-Labs/kitrove/pull/53)
 
 The maintainer approved this experimental distribution channel and public tap on
