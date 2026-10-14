@@ -1,4 +1,4 @@
-"""Freeze the cask copied from the reviewed Kitrove PR #53.
+"""Freeze the reviewed cask, including independently verified release pins.
 
 This is a review tripwire, not a Ruby sandbox or provenance verifier.
 """
@@ -15,7 +15,7 @@ class PackageTests(unittest.TestCase):
         cask = ROOT / "Casks/kitrove-rc.rb"
         self.assertFalse(cask.is_symlink())
         self.assertEqual(hashlib.sha256(cask.read_bytes()).hexdigest(),
-                         "95dea68698a66cde70baf2c42fcb3ba9d84d34dd0fe13baf7f9445513da98119")
+                         "d9b132214eb476579adbef974daabae3f31c04acf4bf70d21aaa6163d652ca0b")
 
     def test_closed_package_inventory(self):
         self.assertEqual(sorted(p.name for p in (ROOT / "Casks").iterdir()),
