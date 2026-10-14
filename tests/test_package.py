@@ -15,7 +15,7 @@ class PackageTests(unittest.TestCase):
         cask = ROOT / "Casks/kitrove-rc.rb"
         self.assertFalse(cask.is_symlink())
         self.assertEqual(hashlib.sha256(cask.read_bytes()).hexdigest(),
-                         "d9b132214eb476579adbef974daabae3f31c04acf4bf70d21aaa6163d652ca0b")
+                         "41929c84cf3759374fb2ff6745102101167d1b4fc6924a5fbeb3070d9149a9ba")
 
     def test_closed_package_inventory(self):
         self.assertEqual(sorted(p.name for p in (ROOT / "Casks").iterdir()),

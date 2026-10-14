@@ -1,6 +1,6 @@
 cask "kitrove-rc" do
-  version "0.1.0-rc.4.1"
-  sha256 "8f659d5727b9e035a628ab4d989a798b31e6526943d5cb042276787da576b61d"
+  version "0.1.0-rc.4.2"
+  sha256 "cfac95704204b675b577d668ee9de8a0d6495a28684a368d443c5acc40264d39"
 
   url "https://github.com/Kapital-Labs/kitrove/releases/download/v#{version}/kitrove-cli-aarch64-apple-darwin.tar.xz"
   name "Kitrove Release Candidate"
