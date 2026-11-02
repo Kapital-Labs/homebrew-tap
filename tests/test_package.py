@@ -39,6 +39,13 @@ PREVIEW_CASK = '''cask "kitrove-rc@5.5" do
 end
 '''
 
+CURRENT_CASK = PREVIEW_CASK.replace('cask "kitrove-rc@5.5" do', 'cask "kitrove" do').replace(
+    'name "Kitrove RC5.5 Preview"', 'name "Kitrove"'
+).replace(
+    'conflicts_with cask: "kitrove-rc"',
+    'conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]'
+)
+
 
 class PackageTests(unittest.TestCase):
     def test_exact_reviewed_cask_bytes(self):
@@ -49,7 +56,7 @@ class PackageTests(unittest.TestCase):
 
     def test_closed_package_inventory(self):
         self.assertEqual(sorted(p.name for p in (ROOT / "Casks").iterdir()),
-                         ["kitrove-rc.rb", "kitrove-rc@5.5.rb"])
+                         ["kitrove-rc.rb", "kitrove-rc@5.5.rb", "kitrove.rb"])
         self.assertFalse((ROOT / "Formula").exists())
 
     def test_fresh_preview_is_separate_and_exactly_declarative(self):
@@ -57,6 +64,21 @@ class PackageTests(unittest.TestCase):
         self.assertTrue(cask.is_file(), "separate RC5.5 cask is required")
         self.assertFalse(cask.is_symlink())
         self.assertEqual(cask.read_text(), PREVIEW_CASK)
+
+    def test_current_cask_is_exact_preview_without_automatic_replacement(self):
+        cask = ROOT / "Casks/kitrove.rb"
+        self.assertTrue(cask.is_file(), "plain kitrove cask is required")
+        self.assertFalse(cask.is_symlink())
+        self.assertEqual(cask.read_text(), CURRENT_CASK)
+
+    def test_primary_instructions_use_current_name_and_keep_preview_boundary(self):
+        readme = (ROOT / "README.md").read_text()
+        install = readme.split("## Install\n", 1)[1].split("## Start", 1)[0]
+        self.assertIn("brew install --cask kapital-labs/tap/kitrove\n", install)
+        self.assertNotIn("brew install --cask kapital-labs/tap/kitrove-rc", install)
+        self.assertIn("v0.1.0-rc.5.5", install)
+        self.assertIn("not a stable release", install)
+        self.assertIn("## Existing installations", readme)
 
 
 if __name__ == "__main__":
