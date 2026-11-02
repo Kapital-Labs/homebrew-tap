@@ -8,26 +8,23 @@ The release-candidate casks support **Apple Silicon macOS only**.
 With Homebrew already installed:
 
 ```sh
-brew install --cask kapital-labs/tap/kitrove-rc@5.5
+brew install --cask kapital-labs/tap/kitrove
 kitrove --version
 kitrove --help
 ```
 
-This installs the signed CLI from `v0.1.0-rc.5.5`. It does not run a separate Kitrove
-installer, initialize Kitrove, or change harness configuration. This versioned cask
-is a **fresh-install evaluation preview**, not an RC4.2 upgrade or migration. Use a
+The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
+from `v0.1.0-rc.5.5`. The package name is shorter; this is **not a stable release**.
+It does not run a separate Kitrove installer, initialize Kitrove, or change harness
+configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
 capabilities. RC4.2 cannot read RC5.5 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
-The older `kitrove-rc` cask remains pinned to RC4.2; ordinary `brew upgrade` on that
-cask will not select RC5.5. The two casks conflict and share the same `kitrove`
-executable name. An existing RC4.2 installation is not automatically replaced.
-Do not uninstall an existing installation or remove its state merely to bypass a
-conflict; review its ownership and recovery needs first. If a `kitrove`
-binary already occupies the destination, resolve ownership explicitly; do not
-force an overwrite. Do not point `kitrove-installer` at this Brew-managed path.
+New preview versions are selected by reviewed package updates, not automatic
+latest-release discovery. Future updates still require compatibility and recovery
+review. Do not point `kitrove-installer` at a Brew-managed installation.
 
 ## Start the walkthrough
 
@@ -42,7 +39,20 @@ trust decisions stay local; applying skills is a separate confirmed step.
 See the [versioned Getting Started guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.5/docs/GETTING-STARTED.md)
 and [RC5.5 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.5).
 
-### Older RC4.2 cask
+## Existing installations
+
+The older `kitrove-rc` cask remains pinned to RC4.2, and `kitrove-rc@5.5` remains
+pinned to RC5.5. They are retained for existing users; neither is automatically
+renamed or replaced by `kitrove`. All three casks share the same executable name.
+The new cask explicitly conflicts with both older tokens. An occupied executable
+also refuses installation without replacing it.
+
+This is not an RC4.2 upgrade or migration. Do not uninstall an existing installation
+or remove its state merely to bypass a conflict; review ownership and recovery
+needs first. Preserve collections and local state. Do not force an overwrite,
+use `--zap`, or open an older collection with a new preview as a migration shortcut.
+
+### Historical RC4.2 channel
 
 The following commands apply only to the older RC4.2 channel, not RC5.5:
 
@@ -57,7 +67,15 @@ Finish pending application transactions before downgrading to RC3, which cannot
 recover the newer nested-home application layout. Do not delete your collection
 or local state to restart the walkthrough.
 
-Remove an RC5.5 executable installed by the versioned cask with:
+## Uninstall
+
+Remove an executable installed by the current cask with:
+
+```sh
+brew uninstall --cask kapital-labs/tap/kitrove
+```
+
+If you installed the versioned RC5.5 cask instead, use its original token:
 
 ```sh
 brew uninstall --cask kapital-labs/tap/kitrove-rc@5.5
@@ -92,8 +110,9 @@ retained rollback kits or recovery protocol. Binary downgrade is not data rollba
 - Release run: [41241628037](https://github.com/Kapital-Labs/kitrove/actions/runs/41241628037)
 - Archive SHA-256: `7e603b3a9fb7dc855dcb693dac9b1729310e29531559708fd647d76e28f25f81`
 
-The separate versioned token preserves the earlier distribution policy: no
-incompatible automatic replacement without a reviewed recovery design. It does
+The current cask and retained older tokens preserve the distribution policy: no
+incompatible automatic replacement without a reviewed recovery design. A plain
+package name does not authorize an incompatible future package update. It does
 not add state locks, migration, automatic trust or rollback to Homebrew. Native
 RC5.5 acceptance passed on an existing Apple Silicon Mac in a disposable Homebrew
 prefix: an occupied binary path and an installed RC4.2 cask were refused without
@@ -103,6 +122,8 @@ collection/harness canaries stayed unchanged. No RC4.2 collection, setup or stat
 migration was exercised. This is warm-host/non-default-prefix evidence, not
 clean-Mac online/offline first launch or standard-prefix migration acceptance.
 See [the scoped source and package review](REVIEW-RC55.md).
+The current-name cask and its additional conflict checks are reviewed separately
+in [the naming and onboarding review](REVIEW-CURRENT.md).
 
 - Executable SHA-256: `c80caa70969f14f953f615c76cb63ce0d9129edc1ca0a06cb5681e8040ae0e79`
 - Reviewed cask SHA-256: `816c4c8e37215e61df182b66f865997ec689d84da648eac7379f7d64f3c165d1`
