@@ -1,20 +1,31 @@
 # Kitrove Homebrew tap
 
 Official experimental packages for [Kitrove](https://github.com/Kapital-Labs/kitrove).
-The initial release candidate supports **Apple Silicon macOS only**.
+The release-candidate casks support **Apple Silicon macOS only**.
 
 ## Install
 
 With Homebrew already installed:
 
 ```sh
-brew install --cask kapital-labs/tap/kitrove-rc
+brew install --cask kapital-labs/tap/kitrove-rc@5.5
 kitrove --version
 kitrove --help
 ```
 
-This installs the signed CLI from `v0.1.0-rc.4.2`. It does not run a separate Kitrove
-installer, initialize Kitrove, or change harness configuration. If a `kitrove`
+This installs the signed CLI from `v0.1.0-rc.5.5`. It does not run a separate Kitrove
+installer, initialize Kitrove, or change harness configuration. This versioned cask
+is a **fresh-install evaluation preview**, not an RC4.2 upgrade or migration. Use a
+new isolated collection and empty destinations with synthetic or disposable
+capabilities. RC4.2 cannot read RC5.5 authored-pack collections; binary rollback
+does not roll collection data backward. No rollback-compatible predecessor is
+declared, and installer refusals must not be bypassed.
+
+The older `kitrove-rc` cask remains pinned to RC4.2; ordinary `brew upgrade` on that
+cask will not select RC5.5. The two casks conflict and share the same `kitrove`
+executable name. An existing RC4.2 installation is not automatically replaced.
+Do not uninstall an existing installation or remove its state merely to bypass a
+conflict; review its ownership and recovery needs first. If a `kitrove`
 binary already occupies the destination, resolve ownership explicitly; do not
 force an overwrite. Do not point `kitrove-installer` at this Brew-managed path.
 
@@ -28,9 +39,12 @@ Choose first-computer setup, connect a second computer, combine local skills
 with an existing collection, or import selected items. Every change has a preview
 and confirmation. Revisit your setup with `kitrove configure`. Credentials and
 trust decisions stay local; applying skills is a separate confirmed step.
-See the [Getting Started guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.4.2/docs/GETTING-STARTED.md).
+See the [versioned Getting Started guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.5/docs/GETTING-STARTED.md)
+and [RC5.5 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.5).
 
-For an existing Homebrew installation:
+### Older RC4.2 cask
+
+The following commands apply only to the older RC4.2 channel, not RC5.5:
 
 ```sh
 brew update
@@ -43,10 +57,10 @@ Finish pending application transactions before downgrading to RC3, which cannot
 recover the newer nested-home application layout. Do not delete your collection
 or local state to restart the walkthrough.
 
-Remove the executable with:
+Remove an RC5.5 executable installed by the versioned cask with:
 
 ```sh
-brew uninstall --cask kapital-labs/tap/kitrove-rc
+brew uninstall --cask kapital-labs/tap/kitrove-rc@5.5
 ```
 
 Uninstall does not remove Kitrove data or harness configuration. No `zap` rule is
@@ -71,7 +85,29 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## Release review
+## RC5.5 release review
+
+- Release: [v0.1.0-rc.5.5](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.5)
+- Source: `64771911eecdb5f167c07c88e1606dc5bf83c9a3`
+- Release run: [41241628037](https://github.com/Kapital-Labs/kitrove/actions/runs/41241628037)
+- Archive SHA-256: `7e603b3a9fb7dc855dcb693dac9b1729310e29531559708fd647d76e28f25f81`
+
+The separate versioned token preserves the earlier distribution policy: no
+incompatible automatic replacement without a reviewed recovery design. It does
+not add state locks, migration, automatic trust or rollback to Homebrew. Native
+RC5.5 acceptance passed on an existing Apple Silicon Mac in a disposable Homebrew
+prefix: an occupied binary path and an installed RC4.2 cask were refused without
+replacement; authenticated RC5.5 fresh installation, strict signature/notarization
+checks, retained quarantine, explicit version/help and removal passed. Synthetic
+collection/harness canaries stayed unchanged. No RC4.2 collection, setup or state
+migration was exercised. This is warm-host/non-default-prefix evidence, not
+clean-Mac online/offline first launch or standard-prefix migration acceptance.
+See [the scoped source and package review](REVIEW-RC55.md).
+
+- Executable SHA-256: `c80caa70969f14f953f615c76cb63ce0d9129edc1ca0a06cb5681e8040ae0e79`
+- Reviewed cask SHA-256: `816c4c8e37215e61df182b66f865997ec689d84da648eac7379f7d64f3c165d1`
+
+### Historical RC4.2 release review
 
 - Release: [v0.1.0-rc.4.2](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.4.2)
 - Source: `f9f4e43ccc258e85ad2fff91df4bde90e1e09b4f`
