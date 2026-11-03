@@ -18,11 +18,7 @@ cask "kitrove" do
   binary "kitrove-cli-aarch64-apple-darwin/kitrove"
 
   caveats <<~EOS
-    Fresh-install evaluation only; not an RC4.2 upgrade or migration.
-    Use a new isolated collection and empty destinations with disposable capabilities.
-    Do not open RC4.2 collections or use RC4.2 to open RC5.6 collections.
-    Homebrew manages this executable, not your Kitrove state.
-    Do not point kitrove-installer at this Homebrew-managed installation.
-    Clean-Mac online/offline first launch remains unverified.
+    Fresh-install preview. Start with: kitrove init
+    Setup and compatibility: https://kitrove.dev/docs/
   EOS
 end

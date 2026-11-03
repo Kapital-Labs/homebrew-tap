@@ -13,6 +13,10 @@ kitrove --version
 kitrove --help
 ```
 
+The install message shows only the fresh-install preview label, `kitrove init`
+and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
+preview boundaries below remain unchanged.
+
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
 from `v0.1.0-rc.5.6`. The package name is shorter; this is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
@@ -119,7 +123,7 @@ retained rollback kits or recovery protocol. Binary downgrade is not data rollba
 - Release run: [41566118041](https://github.com/Kapital-Labs/kitrove/actions/runs/41566118041)
 - Archive SHA-256: `abc42e83f27d585fb14734cc6f3cf6e29e50944c497fe8183ab64922bfdb4d40`
 - Executable SHA-256: `aa96751956190a422405cfa31c9572d17feebbadaa52f9ad31288a2a53d85fb7`
-- Current cask SHA-256: `128738bb6dbd07ad6705d9cd0c06766bca5a5a7fc262afc489b11ef4ff7c5286`
+- Current cask SHA-256: `24a1b3434f7bcb0870d8e007ade85894bc62dd41083ac453cf419b7399be6fd0`
 
 The release's complete inventory, exact-source attestations, notice contents and
 native Mac image passed independent verification before selecting this package.
@@ -136,6 +140,9 @@ before a package replacement and preserve collections and local state. This is
 warm-host/non-default-prefix evidence, not clean-Mac/offline first launch, real
 data migration, or the standalone installer's rollback/recovery protocol.
 See [the RC5.6 source and package review](REVIEW-RC56.md).
+The subsequent install-message change is recorded in
+[the caveat copy review](REVIEW-INSTALL-CAVEATS.md); release and executable bytes
+are unchanged.
 
 ## Historical RC5.5 release review
 
