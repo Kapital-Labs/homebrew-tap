@@ -44,6 +44,13 @@ CURRENT_CASK = PREVIEW_CASK.replace('cask "kitrove-rc@5.5" do', 'cask "kitrove" 
 ).replace(
     'conflicts_with cask: "kitrove-rc"',
     'conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]'
+).replace(
+    'version "0.1.0-rc.5.5"', 'version "0.1.0-rc.5.6"'
+).replace(
+    'sha256 "7e603b3a9fb7dc855dcb693dac9b1729310e29531559708fd647d76e28f25f81"',
+    'sha256 "abc42e83f27d585fb14734cc6f3cf6e29e50944c497fe8183ab64922bfdb4d40"'
+).replace(
+    'open RC5.5 collections', 'open RC5.6 collections'
 )
 
 
@@ -76,9 +83,25 @@ class PackageTests(unittest.TestCase):
         install = readme.split("## Install\n", 1)[1].split("## Start", 1)[0]
         self.assertIn("brew install --cask kapital-labs/tap/kitrove\n", install)
         self.assertNotIn("brew install --cask kapital-labs/tap/kitrove-rc", install)
-        self.assertIn("v0.1.0-rc.5.5", install)
+        self.assertIn("v0.1.0-rc.5.6", install)
         self.assertIn("not a stable release", install)
         self.assertIn("## Existing installations", readme)
+
+    def test_current_channel_selects_reviewed_rc56_without_changing_old_casks(self):
+        current = (ROOT / "Casks/kitrove.rb").read_text()
+        self.assertIn('version "0.1.0-rc.5.6"', current)
+        self.assertIn('conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]', current)
+        self.assertEqual(hashlib.sha256((ROOT / "Casks/kitrove-rc@5.5.rb").read_bytes()).hexdigest(),
+                         "816c4c8e37215e61df182b66f865997ec689d84da648eac7379f7d64f3c165d1")
+
+    def test_latest_onboarding_covers_numbered_exclusions_and_keeps_confirmation(self):
+        readme = (ROOT / "README.md").read_text()
+        install = readme.split("## Install\n", 1)[1].split("## Start", 1)[0]
+        self.assertIn("v0.1.0-rc.5.6", install)
+        self.assertIn("all,-3,-8", readme)
+        self.assertIn("Enter previews", readme)
+        self.assertIn("sequential", readme)
+        self.assertIn("reviewed ready set", readme)
 
 
 if __name__ == "__main__":

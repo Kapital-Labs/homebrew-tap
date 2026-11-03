@@ -1,6 +1,6 @@
 cask "kitrove" do
-  version "0.1.0-rc.5.5"
-  sha256 "7e603b3a9fb7dc855dcb693dac9b1729310e29531559708fd647d76e28f25f81"
+  version "0.1.0-rc.5.6"
+  sha256 "abc42e83f27d585fb14734cc6f3cf6e29e50944c497fe8183ab64922bfdb4d40"
 
   url "https://github.com/Kapital-Labs/kitrove/releases/download/v#{version}/kitrove-cli-aarch64-apple-darwin.tar.xz"
   name "Kitrove"
@@ -20,7 +20,7 @@ cask "kitrove" do
   caveats <<~EOS
     Fresh-install evaluation only; not an RC4.2 upgrade or migration.
     Use a new isolated collection and empty destinations with disposable capabilities.
-    Do not open RC4.2 collections or use RC4.2 to open RC5.5 collections.
+    Do not open RC4.2 collections or use RC4.2 to open RC5.6 collections.
     Homebrew manages this executable, not your Kitrove state.
     Do not point kitrove-installer at this Homebrew-managed installation.
     Clean-Mac online/offline first launch remains unverified.
