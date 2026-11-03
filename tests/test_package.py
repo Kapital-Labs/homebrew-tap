@@ -51,6 +51,15 @@ CURRENT_CASK = PREVIEW_CASK.replace('cask "kitrove-rc@5.5" do', 'cask "kitrove" 
     'sha256 "abc42e83f27d585fb14734cc6f3cf6e29e50944c497fe8183ab64922bfdb4d40"'
 ).replace(
     'open RC5.5 collections', 'open RC5.6 collections'
+).replace(
+    '''    Fresh-install evaluation only; not an RC4.2 upgrade or migration.
+    Use a new isolated collection and empty destinations with disposable capabilities.
+    Do not open RC4.2 collections or use RC4.2 to open RC5.6 collections.
+    Homebrew manages this executable, not your Kitrove state.
+    Do not point kitrove-installer at this Homebrew-managed installation.
+    Clean-Mac online/offline first launch remains unverified.''',
+    '''    Fresh-install preview. Start with: kitrove init
+    Setup and compatibility: https://kitrove.dev/docs/'''
 )
 
 
@@ -102,6 +111,27 @@ class PackageTests(unittest.TestCase):
         self.assertIn("Enter previews", readme)
         self.assertIn("sequential", readme)
         self.assertIn("reviewed ready set", readme)
+
+    def test_install_caveats_are_two_actionable_lines(self):
+        current = (ROOT / "Casks/kitrove.rb").read_text()
+        caveats = current.split("  caveats <<~EOS\n", 1)[1].split("  EOS\n", 1)[0]
+        self.assertEqual([line.strip() for line in caveats.splitlines()], [
+            "Fresh-install preview. Start with: kitrove init",
+            "Setup and compatibility: https://kitrove.dev/docs/",
+        ])
+
+    def test_detailed_install_limits_remain_in_documentation(self):
+        readme = (ROOT / "README.md").read_text()
+        for guidance in (
+            "new isolated collection and empty destinations",
+            "RC4.2 cannot read RC5.6 authored-pack collections",
+            "Do not point `kitrove-installer` at a Brew-managed installation",
+            "Uninstall does not remove Kitrove data or harness configuration",
+            "not clean-Mac/offline first launch",
+            "do not force an overwrite",
+        ):
+            with self.subTest(guidance=guidance):
+                self.assertIn(guidance.lower(), readme.lower())
 
 
 if __name__ == "__main__":
