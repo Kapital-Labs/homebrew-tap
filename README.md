@@ -18,11 +18,11 @@ and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
 preview boundaries below remain unchanged.
 
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.6`. The package name is shorter; this is **not a stable release**.
+from `v0.1.0-rc.5.7`. The package name is shorter; this is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
 configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.6 authored-pack collections; binary rollback
+capabilities. RC4.2 cannot read RC5.7 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
@@ -47,10 +47,15 @@ the shown plan, n skips, and r renames before a new preview.
 Bulk adoption is sequential, not atomic: stale inputs, pending recovery or a
 failed commit stop later items, while completed items remain and are reported.
 Revisit setup with `kitrove configure`. Original source files stay in place.
+After setup, select **Choose skills to add to your AI tools** for local application,
+or **Share this collection with another computer** for bidirectional sync. `init`
+offers to continue a valid existing setup after confirmation; it does not recreate
+the collection or local state. Questions/input use optional cyan; output and
+previews have separate labels. Set `NO_COLOR` for plain text with the same approvals.
 Credentials and trust decisions stay local; applying skills is a separate
 confirmed step.
-See the [versioned quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.6/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.6 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.6).
+See the [versioned quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.7/docs/SETUP-QUICK-ADOPTION.md)
+and [RC5.7 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.7).
 
 ## Existing installations
 
@@ -67,7 +72,7 @@ use `--zap`, or open an older collection with a new preview as a migration short
 
 ### Historical RC4.2 channel
 
-The following commands apply only to the older RC4.2 channel, not RC5.6:
+The following commands apply only to the older RC4.2 channel, not RC5.7:
 
 ```sh
 brew update
@@ -116,7 +121,31 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.6 release review
+## RC5.7 release review
+
+- Release: [v0.1.0-rc.5.7](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.7)
+- Source: `bebda46f4061e39fd50f1c87ef3282befa0b1bcd`
+- Release run: [41904636002](https://github.com/Kapital-Labs/kitrove/actions/runs/41904636002)
+- Archive SHA-256: `7c1ebc5af5b30bc127e35ff91fd692ea32e2a3f4b427d22656057b251f60c1f6`
+- Executable SHA-256: `daafbb368ebd40d2de220ca362a610929cff467965f9d3558f744185d5be8c8c`
+- Current cask SHA-256: `2e47e4ce6a96cf619947919fccf642f4f772679100a6199807d66d226483ad97`
+
+The release's 21-file inventory, 14 exact-source attestations, six archives' notice
+bytes and native Mac image passed independent verification before selecting this
+package. Only the plain current cask's version and archive digest change; its short
+install message and both older casks stay unchanged. Product-code changes from
+RC5.6 are confined to guided CLI setup. Core/model/state-lifecycle code, dependency
+graph and publication policy are unchanged. No data migration is introduced.
+
+Normal RC5.6-to-RC5.7 executable replacement, fresh install/removal, native
+signature/notarization and retained quarantine passed in a disposable Homebrew
+prefix. Occupied names and both legacy-token conflicts refused without replacing
+existing bytes; synthetic collection/state canaries stayed unchanged. No real
+collection was opened or setup run. This is warm-host/non-default-prefix evidence,
+not clean-Mac/offline launch, data migration or custom-installer rollback support.
+See [the RC5.7 review](REVIEW-RC57.md).
+
+## Historical RC5.6 release review
 
 - Release: [v0.1.0-rc.5.6](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.6)
 - Source: `d306adb76af9380a3ac5ebd82add524fa293a0ed`
