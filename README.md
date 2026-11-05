@@ -18,11 +18,11 @@ and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
 preview boundaries below remain unchanged.
 
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.7`. The package name is shorter; this is **not a stable release**.
+from `v0.1.0-rc.5.8`. The package name is shorter; this is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
 configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.7 authored-pack collections; binary rollback
+capabilities. RC4.2 cannot read RC5.8 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
@@ -44,6 +44,15 @@ After preview, `y` or `yes` approves only the reviewed ready set; Enter does not
 approve bulk writes. Use `r` to walk through individual plans: Enter/y accepts
 the shown plan, n skips, and r renames before a new preview.
 
+Repeated names? Use `from codex`, `from claude`, `from pi` or `from opencode`
+to select one displayed tool's observations, for example `from codex,-13,-20`.
+Original inventory numbers apply; this is not a permanent source preference or
+native merge. Existing collection names and within-tool ambiguity stay protected.
+Skipped items show reason counts and at most 20 examples; `d` shows all details.
+Ready plans retain full source/fidelity/loss details. An empty preview offers
+no adoption approval or zero-item success. Enter or `s` chooses again using the
+same scan; `s` also works after a nonempty preview.
+
 Bulk adoption is sequential, not atomic: stale inputs, pending recovery or a
 failed commit stop later items, while completed items remain and are reported.
 Revisit setup with `kitrove configure`. Original source files stay in place.
@@ -54,8 +63,8 @@ the collection or local state. Questions/input use optional cyan; output and
 previews have separate labels. Set `NO_COLOR` for plain text with the same approvals.
 Credentials and trust decisions stay local; applying skills is a separate
 confirmed step.
-See the [versioned quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.7/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.7 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.7).
+See the [current quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/main/docs/SETUP-QUICK-ADOPTION.md)
+and [RC5.8 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.8).
 
 ## Existing installations
 
@@ -72,7 +81,7 @@ use `--zap`, or open an older collection with a new preview as a migration short
 
 ### Historical RC4.2 channel
 
-The following commands apply only to the older RC4.2 channel, not RC5.7:
+The following commands apply only to the older RC4.2 channel, not RC5.8:
 
 ```sh
 brew update
@@ -121,7 +130,32 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.7 release review
+## RC5.8 release review
+
+- Release: [v0.1.0-rc.5.8](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.8)
+- Source: `d6e1cf5d74f568261658943f0c798be344ceb9da`
+- Release run: [42088135078](https://github.com/Kapital-Labs/kitrove/actions/runs/42088135078)
+- Archive SHA-256: `269d096bf0e6c4dfee496efa4328a6b505e33fac7bd4b9acc1b13e471a849bf2`
+- Executable SHA-256: `5b788e082a773cec2e2eaff197842e80da9f9be2e60c046e66bda42ec729a740`
+- Current cask SHA-256: `d9a2066b85195e4cf6abd85d63bffef0a1e5b33921b38ef0ce0da978bb0cfe11`
+
+All 21 published files, 14 exact-source attestations, six archives' notice bytes
+and native Mac image passed independent verification before selecting this cask.
+Only the plain current cask's version and archive digest change; both older casks
+and the short install message stay unchanged. Runtime changes from RC5.7 are
+guided setup selection/preview improvements, not core/model/state-format,
+dependency-graph, signing-policy or migration changes.
+
+Normal RC5.7-to-RC5.8 executable replacement, fresh install/removal, native identity,
+notarization and retained quarantine passed in an isolated Homebrew prefix.
+Occupied names and both legacy-token conflicts refused without replacing bytes;
+synthetic collection/state canaries stayed unchanged. No real collection was
+opened or setup run. This is warm-host/non-default-prefix evidence, not clean-Mac/
+offline launch, data migration or the custom installer's rollback protocol.
+Exact public package checks and a public-qualified consumer check remain separate
+publication gates. See [the RC5.8 review](REVIEW-RC58.md).
+
+## Historical RC5.7 release review
 
 - Release: [v0.1.0-rc.5.7](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.7)
 - Source: `bebda46f4061e39fd50f1c87ef3282befa0b1bcd`
