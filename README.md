@@ -18,11 +18,11 @@ and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
 preview boundaries below remain unchanged.
 
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.8`. The package name is shorter; this is **not a stable release**.
+from `v0.1.0-rc.5.9`. The package name is shorter; this is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
 configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.8 authored-pack collections; binary rollback
+capabilities. RC4.2 cannot read RC5.9 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
@@ -40,8 +40,8 @@ Choose first-computer setup, connect a second computer, combine local skills
 with an existing collection, or import selected items. In skill collection,
 Enter previews recommendations without writing them. Choose `1,4,7` for only
 those entries, or `all,-3,-8` (also `-3,-8`) for everything except entries 3 and 8.
-After preview, `y` or `yes` approves only the reviewed ready set; Enter does not
-approve bulk writes. Use `r` to walk through individual plans: Enter/y accepts
+After a nonempty preview, Enter or `y` approves only the reviewed ready set.
+Use `r` to walk through individual plans: Enter/y accepts
 the shown plan, n skips, and r renames before a new preview.
 
 Repeated names? Use `from codex`, `from claude`, `from pi` or `from opencode`
@@ -61,10 +61,19 @@ or **Share this collection with another computer** for bidirectional sync. `init
 offers to continue a valid existing setup after confirmation; it does not recreate
 the collection or local state. Questions/input use optional cyan; output and
 previews have separate labels. Set `NO_COLOR` for plain text with the same approvals.
-Credentials and trust decisions stay local; applying skills is a separate
-confirmed step.
+Closed menus accept a single displayed key without Enter. Selection expressions,
+paths, names and URLs remain text prompts: type the value and press Enter.
+An Enter left over from an earlier prompt cannot approve a later preview.
+Apply and sync keep separate confirmations; Enter skips those writes.
+Credentials and trust decisions stay local.
 See the [current quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/main/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.8 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.8).
+and [RC5.9 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.9).
+
+When sharing, choose a shared folder or **Git repository**. Paste an existing
+repository URL: `https://...` selects HTTPS, `ssh://...` selects SSH, and a URL
+without its scheme asks which connection to use. SSH requires an existing absolute
+known-hosts path. Setup does not create a repository, discover project remotes,
+learn host keys or import Git/SSH configuration.
 
 ## Existing installations
 
@@ -81,7 +90,7 @@ use `--zap`, or open an older collection with a new preview as a migration short
 
 ### Historical RC4.2 channel
 
-The following commands apply only to the older RC4.2 channel, not RC5.8:
+The following commands apply only to the older RC4.2 channel, not RC5.9:
 
 ```sh
 brew update
@@ -130,7 +139,35 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.8 release review
+## RC5.9 release review
+
+- Release: [v0.1.0-rc.5.9](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.9)
+- Source: `229ebd6b7aaddd4249d997b734d7d59c4fe8b20d`
+- Release run: [42410283120](https://github.com/Kapital-Labs/kitrove/actions/runs/42410283120)
+- Archive SHA-256: `512da247586e0a1a050e5b59a2d029ddfa959d195aabb4d7b3d1d77f944d884b`
+- Executable SHA-256: `adb004ec1c6959411cbf3ee60a9899697bb896ed43dc483a7842c1b40bad751c`
+- Current cask SHA-256: `6b5db1bfed82b87fe8c4beaf389ba4127a335f773975bd9902af60f998b2d3a1`
+
+All 21 published files, 14 exact-source attestations, six archives' notice bytes
+and the native Mac image passed independent verification before selecting this
+package. Only the plain current cask's version and digest change; both older
+casks, conflicts and short install message stay unchanged.
+
+RC5.9 adds immediate closed-menu choices and visible nonempty-preview Enter
+adoption, simplifies explicit Git URL selection, and corrects aggregate retained
+sync-base inventory handling. Ordinary per-skill limits, exact approvals,
+no-follow/identity checks and separate Apply/sync authority remain. No format
+migration or automatic recovery of a real interrupted operation is claimed.
+
+Disposable normal RC5.8-to-RC5.9 executable replacement, fresh install/removal,
+native signature/notarization/quarantine, occupied/legacy refusals and unchanged
+synthetic canaries passed. No real collection was opened, no setup was run, and
+no interrupted sync was retried. Warm-host/non-default-prefix tests are not
+clean-Mac/offline launch, state migration or custom-installer rollback evidence.
+Exact package PR/main checks and a fresh public-qualified consumer check are
+required before advertising the updated cask. See [the RC5.9 review](REVIEW-RC59.md).
+
+## Historical RC5.8 release review
 
 - Release: [v0.1.0-rc.5.8](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.8)
 - Source: `d6e1cf5d74f568261658943f0c798be344ceb9da`
