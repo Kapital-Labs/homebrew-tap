@@ -45,16 +45,16 @@ CURRENT_CASK = PREVIEW_CASK.replace('cask "kitrove-rc@5.5" do', 'cask "kitrove" 
     'conflicts_with cask: "kitrove-rc"',
     'conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]'
 ).replace(
-    'version "0.1.0-rc.5.5"', 'version "0.1.0-rc.5.10"'
+    'version "0.1.0-rc.5.5"', 'version "0.1.0-rc.5.11"'
 ).replace(
     'sha256 "7e603b3a9fb7dc855dcb693dac9b1729310e29531559708fd647d76e28f25f81"',
-    'sha256 "4c0bc02e074801ad1949592f881de8a18f456a4e5e0940908b9a3261be505350"'
+    'sha256 "0faa29e3e888759d82e3f25b2a2dc7090ac5d32853e50a37326721bf9f149542"'
 ).replace(
-    'open RC5.5 collections', 'open RC5.10 collections'
+    'open RC5.5 collections', 'open RC5.11 collections'
 ).replace(
     '''    Fresh-install evaluation only; not an RC4.2 upgrade or migration.
     Use a new isolated collection and empty destinations with disposable capabilities.
-    Do not open RC4.2 collections or use RC4.2 to open RC5.10 collections.
+    Do not open RC4.2 collections or use RC4.2 to open RC5.11 collections.
     Homebrew manages this executable, not your Kitrove state.
     Do not point kitrove-installer at this Homebrew-managed installation.
     Clean-Mac online/offline first launch remains unverified.''',
@@ -92,13 +92,13 @@ class PackageTests(unittest.TestCase):
         install = readme.split("## Install\n", 1)[1].split("## Start", 1)[0]
         self.assertIn("brew install --cask kapital-labs/tap/kitrove\n", install)
         self.assertNotIn("brew install --cask kapital-labs/tap/kitrove-rc", install)
-        self.assertIn("v0.1.0-rc.5.10", install)
+        self.assertIn("v0.1.0-rc.5.11", install)
         self.assertIn("not a stable release", install)
         self.assertIn("## Existing installations", readme)
 
-    def test_current_channel_selects_reviewed_rc510_without_changing_old_casks(self):
+    def test_current_channel_selects_reviewed_rc511_without_changing_old_casks(self):
         current = (ROOT / "Casks/kitrove.rb").read_text()
-        self.assertIn('version "0.1.0-rc.5.10"', current)
+        self.assertIn('version "0.1.0-rc.5.11"', current)
         self.assertIn('conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]', current)
         self.assertEqual(hashlib.sha256((ROOT / "Casks/kitrove-rc@5.5.rb").read_bytes()).hexdigest(),
                          "816c4c8e37215e61df182b66f865997ec689d84da648eac7379f7d64f3c165d1")
@@ -106,7 +106,7 @@ class PackageTests(unittest.TestCase):
     def test_latest_onboarding_covers_numbered_exclusions_and_keeps_confirmation(self):
         readme = (ROOT / "README.md").read_text()
         install = readme.split("## Install\n", 1)[1].split("## Start", 1)[0]
-        self.assertIn("v0.1.0-rc.5.10", install)
+        self.assertIn("v0.1.0-rc.5.11", install)
         self.assertIn("all,-3,-8", readme)
         self.assertIn("Enter previews", readme)
         self.assertIn("sequential", readme)
@@ -124,7 +124,7 @@ class PackageTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text()
         for guidance in (
             "new isolated collection and empty destinations",
-            "RC4.2 cannot read RC5.10 authored-pack collections",
+            "RC4.2 cannot read RC5.11 authored-pack collections",
             "Do not point `kitrove-installer` at a Brew-managed installation",
             "Uninstall does not remove Kitrove data or harness configuration",
             "not clean-Mac/offline first launch",
@@ -140,7 +140,7 @@ class PackageTests(unittest.TestCase):
             self.assertIn(guidance, readme)
 
     def test_current_source_selection_and_empty_preview_guidance(self):
-        readme = (ROOT / "README.md").read_text().split("## Historical RC5.9 release review", 1)[0]
+        readme = (ROOT / "README.md").read_text().split("## Historical RC5.10 release review", 1)[0]
         for guidance in ("from codex", "from codex,-13,-20", "same scan",
                          "numbered source", "Your exclusions still apply", "skipped-item counts",
                          "no adoption approval"):
@@ -148,7 +148,7 @@ class PackageTests(unittest.TestCase):
         self.assertIn("blob/main/docs/SETUP-QUICK-ADOPTION.md", readme)
 
     def test_latest_closed_keys_and_git_choice_keep_other_approvals_separate(self):
-        current = (ROOT / "README.md").read_text().split("## Historical RC5.9 release review", 1)[0]
+        current = (ROOT / "README.md").read_text().split("## Historical RC5.10 release review", 1)[0]
         normalized = " ".join(current.split())
         for guidance in ("without Enter", "text prompts", "Enter or `y` approves",
                          "earlier prompt", "Apply and sync", "Git repository",

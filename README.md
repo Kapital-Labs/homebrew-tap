@@ -18,11 +18,11 @@ and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
 preview boundaries below remain unchanged.
 
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.10`. This is **not a stable release**.
+from `v0.1.0-rc.5.11`. This is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
 configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.10 authored-pack collections; binary rollback
+capabilities. RC4.2 cannot read RC5.11 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
@@ -69,8 +69,11 @@ paths, names and URLs remain text prompts: type the value and press Enter.
 An Enter left over from an earlier prompt cannot approve a later preview.
 Apply and sync keep separate confirmations; Enter skips those writes.
 Credentials and trust decisions stay local.
+Use `kitrove scan` to browse the inventory without changes. Press a displayed
+number to open a group, `d` for diagnostics, or Enter to finish.
+
 See the [current quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/main/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.10 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.10).
+and [RC5.11 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.11).
 
 When sharing, choose a shared folder or **Git repository**. Paste an existing
 repository URL: `https://...` selects HTTPS, `ssh://...` selects SSH, and a URL
@@ -158,7 +161,12 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.10 release review
+## RC5.11 release review
+
+The [RC5.11 review](REVIEW-RC511.md) records the release source, checksums,
+signed provenance and isolated Homebrew tests.
+
+## Historical RC5.10 release review
 
 The [RC5.10 review](REVIEW-RC510.md) records the release source, checksums,
 signed provenance and isolated Homebrew tests.
