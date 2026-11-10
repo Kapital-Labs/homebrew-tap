@@ -18,11 +18,11 @@ and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
 preview boundaries below remain unchanged.
 
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.11`. This is **not a stable release**.
+from `v0.1.0-rc.5.12`. This is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
 configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.11 authored-pack collections; binary rollback
+capabilities. RC4.2 cannot read RC5.12 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
@@ -73,13 +73,14 @@ Use `kitrove scan` to browse the inventory without changes. Press a displayed
 number to open a group, `d` for diagnostics, or Enter to finish.
 
 See the [current quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/main/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.11 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.11).
+and [RC5.12 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.12).
 
 When sharing, choose a shared folder or **Git repository**. Paste an existing
-repository URL: `https://...` selects HTTPS, `ssh://...` selects SSH, and a URL
-without its scheme asks which connection to use. SSH requires an existing absolute
-known-hosts path. Setup does not create a repository, discover project remotes,
-learn host keys or import Git/SSH configuration.
+clone URL or type `c` for instructions to create an empty private repository on
+your Git host. Then paste its clone URL. `https://...` selects HTTPS and may ask
+for a username and hidden access token. `ssh://...` selects SSH and requires an
+absolute known-hosts path. A URL without its scheme asks which connection to use.
+Review and approve the synchronization plan separately.
 
 ## Existing installations
 
@@ -161,7 +162,12 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.11 release review
+## RC5.12 release review
+
+The [RC5.12 review](REVIEW-RC512.md) records the release source, checksums,
+signed provenance and isolated Homebrew checks.
+
+## Historical RC5.11 release review
 
 The [RC5.11 review](REVIEW-RC511.md) records the release source, checksums,
 signed provenance and isolated Homebrew tests.
