@@ -80,6 +80,22 @@ learn host keys or import Git/SSH configuration.
 
 ## Existing installations
 
+### Upgrade the current cask
+
+If you already installed `kapital-labs/tap/kitrove`, refresh the tap before
+asking Homebrew to upgrade it:
+
+```sh
+brew update
+brew upgrade --cask kapital-labs/tap/kitrove
+kitrove --version
+```
+
+Homebrew can report that the latest version is installed when its local copy
+of the tap is stale. The upgrade replaces the Homebrew-managed executable.
+
+### Older cask names
+
 The older `kitrove-rc` cask remains pinned to RC4.2, and `kitrove-rc@5.5` remains
 pinned to RC5.5. They are retained for existing users; neither is automatically
 renamed or replaced by `kitrove`. All three casks share the same executable name.
