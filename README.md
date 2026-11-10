@@ -18,11 +18,11 @@ and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
 preview boundaries below remain unchanged.
 
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.9`. The package name is shorter; this is **not a stable release**.
+from `v0.1.0-rc.5.10`. This is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
 configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.9 authored-pack collections; binary rollback
+capabilities. RC4.2 cannot read RC5.10 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
@@ -44,14 +44,17 @@ After a nonempty preview, Enter or `y` approves only the reviewed ready set.
 Use `r` to walk through individual plans: Enter/y accepts
 the shown plan, n skips, and r renames before a new preview.
 
-Repeated names? Use `from codex`, `from claude`, `from pi` or `from opencode`
-to select one displayed tool's observations, for example `from codex,-13,-20`.
-Original inventory numbers apply; this is not a permanent source preference or
-native merge. Existing collection names and within-tool ambiguity stay protected.
-Skipped items show reason counts and at most 20 examples; `d` shows all details.
-Ready plans retain full source/fidelity/loss details. An empty preview offers
-no adoption approval or zero-item success. Enter or `s` chooses again using the
-same scan; `s` also works after a nonempty preview.
+If overlapping names leave nothing ready to collect, choose a numbered source
+tool to preview its copies. Your exclusions still apply. You can also type
+`from codex`, `from claude`, `from pi` or `from opencode` at the selection prompt.
+For example, `from codex,-13,-20` uses the original inventory numbers. Existing
+collection names and duplicates within one tool still need an explicit choice
+or individual review.
+
+The preview shows skipped-item counts by reason. Press `d` for all details.
+Ready plans retain full source, fidelity and loss details. An empty preview
+offers no adoption approval. Enter or `s` chooses again using the same scan.
+After a nonempty preview, `s` also lets you choose again.
 
 Bulk adoption is sequential, not atomic: stale inputs, pending recovery or a
 failed commit stop later items, while completed items remain and are reported.
@@ -67,7 +70,7 @@ An Enter left over from an earlier prompt cannot approve a later preview.
 Apply and sync keep separate confirmations; Enter skips those writes.
 Credentials and trust decisions stay local.
 See the [current quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/main/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.9 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.9).
+and [RC5.10 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.10).
 
 When sharing, choose a shared folder or **Git repository**. Paste an existing
 repository URL: `https://...` selects HTTPS, `ssh://...` selects SSH, and a URL
@@ -90,7 +93,7 @@ use `--zap`, or open an older collection with a new preview as a migration short
 
 ### Historical RC4.2 channel
 
-The following commands apply only to the older RC4.2 channel, not RC5.9:
+The following commands apply only to the older RC4.2 channel.
 
 ```sh
 brew update
@@ -139,7 +142,12 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.9 release review
+## RC5.10 release review
+
+The [RC5.10 review](REVIEW-RC510.md) records the release source, checksums,
+signed provenance and isolated Homebrew tests.
+
+## Historical RC5.9 release review
 
 - Release: [v0.1.0-rc.5.9](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.9)
 - Source: `229ebd6b7aaddd4249d997b734d7d59c4fe8b20d`
