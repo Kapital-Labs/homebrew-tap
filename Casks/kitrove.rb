@@ -1,6 +1,6 @@
 cask "kitrove" do
-  version "0.1.0-rc.5.22"
-  sha256 "c9c424de96c0291474aa6fce3c053391d6dc33521fc1ac03ba06bbfeb4720134"
+  version "0.1.0-rc.5.23"
+  sha256 "eeeedcc583daf23846e3771670148a1c29f716c3347d5cc5548ee9e50c05cb70"
 
   url "https://github.com/Kapital-Labs/kitrove/releases/download/v#{version}/kitrove-cli-aarch64-apple-darwin.tar.xz"
   name "Kitrove"
@@ -18,7 +18,7 @@ cask "kitrove" do
   binary "kitrove-cli-aarch64-apple-darwin/kitrove"
 
   caveats <<~EOS
-    Fresh-install preview. Start with: kitrove init
+    Fresh-install preview. Start with: kitrove
     Setup and compatibility: https://kitrove.dev/docs/
   EOS
 end
