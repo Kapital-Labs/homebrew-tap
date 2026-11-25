@@ -18,11 +18,11 @@ and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
 preview boundaries below remain unchanged.
 
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.21`. This is **not a stable release**.
+from `v0.1.0-rc.5.22`. This is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
 configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.21 authored-pack collections; binary rollback
+capabilities. RC4.2 cannot read RC5.22 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
@@ -60,7 +60,7 @@ Bulk adoption is sequential, not atomic: stale inputs, pending recovery or a
 failed commit stop later items, while completed items remain and are reported.
 Revisit setup with `kitrove configure`. Original source files stay in place.
 After setup, select **Add skills or packs to a tool** for local application,
-or **Share this collection with another computer** for bidirectional sync. `init`
+or **Sync this collection with another computer** for bidirectional sync. `init`
 offers to continue a valid existing setup after confirmation; it does not recreate
 the collection or local state. Questions/input use optional cyan; output and
 previews have separate labels. Set `NO_COLOR` for plain text with the same approvals.
@@ -117,6 +117,11 @@ No changes made. Write access and lock availability were not tested. The report
 checks metadata, not private state-file contents, and grants no trust or ownership.
 This diagnostic does not establish the cause of a reported failure on another Mac.
 
+Run `kitrove --help` for a short command list and `kitrove apply --help` for
+focused help. On macOS, see the [retained file recovery guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.22/docs/QUARANTINE-RECOVERY.md)
+if doctor reports a different device ID and matching file ID. Start with a
+read-only preview.
+
 Exact native matches are already collected and individual review skips them;
 changed or unverified copies still need review. Eligible text-helper scripts can
 be collected as inert executable-class data. Before tool placement, review and
@@ -126,7 +131,7 @@ payloads, credentials and native lifecycle directives remain unsupported.
 Original sources remain unchanged.
 
 See the [current quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/main/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.21 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.21).
+and [RC5.22 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.22).
 
 When sharing, choose a shared folder or **Git repository**. Paste an existing
 clone URL or type `c` for instructions to create an empty private repository on
@@ -215,7 +220,11 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.21 release review
+## RC5.22 release review
+
+See the [RC5.22 review](REVIEW-RC522.md) for provenance and the cask checks.
+
+## Historical RC5.21 release review
 
 See the [RC5.21 review](REVIEW-RC521.md) for provenance and the cask checks.
 
