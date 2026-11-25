@@ -13,16 +13,16 @@ kitrove --version
 kitrove --help
 ```
 
-The install message shows only the fresh-install preview label, `kitrove init`
+The install message shows only the fresh-install preview label, `kitrove`
 and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
 preview boundaries below remain unchanged.
 
 The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.22`. This is **not a stable release**.
+from `v0.1.0-rc.5.23`. This is **not a stable release**.
 It does not run a separate Kitrove installer, initialize Kitrove, or change harness
 configuration. This is a **fresh-install evaluation preview**. Use a
 new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.22 authored-pack collections; binary rollback
+capabilities. RC4.2 cannot read RC5.23 authored-pack collections; binary rollback
 does not roll collection data backward. No rollback-compatible predecessor is
 declared, and installer refusals must not be bypassed.
 
@@ -33,16 +33,14 @@ review. Do not point `kitrove-installer` at a Brew-managed installation.
 ## Start the walkthrough
 
 ```sh
-kitrove init
+kitrove
 ```
 
-Choose first-computer setup, connect a second computer, combine local skills
-with an existing collection, or import selected items. In skill collection,
-Enter previews recommendations without writing them. Choose `1,4,7` for only
+Choose **Set up Kitrove** to begin setup. In skill collection, Enter previews
+recommendations without writing them. Choose `1,4,7` for only
 those entries, or `all,-3,-8` (also `-3,-8`) for everything except entries 3 and 8.
-After a nonempty preview, Enter or `y` approves only the reviewed ready set.
-Use `r` to walk through individual plans: Enter/y accepts
-the shown plan, n skips, and r renames before a new preview.
+After a nonempty preview, type `y` and press Enter to save the reviewed ready set.
+Enter alone skips saving. Use `r` then Enter for individual review or renaming.
 
 If overlapping names leave nothing ready to collect, choose a numbered source
 tool to preview its copies. Your exclusions still apply. You can also type
@@ -59,22 +57,21 @@ After a nonempty preview, `s` also lets you choose again.
 Bulk adoption is sequential, not atomic: stale inputs, pending recovery or a
 failed commit stop later items, while completed items remain and are reported.
 Revisit setup with `kitrove configure`. Original source files stay in place.
-After setup, select **Add skills or packs to a tool** for local application,
+After setup, select **Add saved skills or packs to a tool** for local application,
 or **Sync this collection with another computer** for bidirectional sync. `init`
 offers to continue a valid existing setup after confirmation; it does not recreate
 the collection or local state. Questions/input use optional cyan; output and
 previews have separate labels. Set `NO_COLOR` for plain text with the same approvals.
-Closed menus accept a single displayed key without Enter. Selection expressions,
-paths, names and URLs remain text prompts: type the value and press Enter.
-An Enter left over from an earlier prompt cannot approve a later preview.
-Apply and sync keep separate confirmations; Enter skips those writes.
+Enter submits a choice or typed value. Shortcuts and arrows highlight choices
+on supported terminals. A key left over from an earlier prompt cannot
+approve a later preview. Saving, applying and syncing need separate approvals.
 Credentials and trust decisions stay local.
-Use `kitrove scan` for a compact inventory summary. Use Up/Down and Enter on
-supported Mac/Linux terminals, or a displayed shortcut. Choose **View scan issues**
+Use `kitrove scan` for a compact inventory summary. Highlight with Up/Down or a
+displayed shortcut and press Enter. Choose **View scan issues**
 for unreadable folders, `r` to scan again with the same filters, or `q` to quit.
 Narrow, unrecognized and native Windows terminals retain shortcuts and a marked
-Enter default. Press `a` for **Add skills to collection** with its own preview
-and confirmation. Browsing changes no files.
+Enter default. Type `a` and press Enter for **Add skills to collection** with its
+own preview and confirmation. Browsing changes no files.
 Scan candidates are not guaranteed ready additions: the collection planner checks
 occupied names, content status and trust requirements before approval.
 
@@ -82,12 +79,13 @@ Run `kitrove apply` to open the guided tool and pack picker directly. Packs are
 listed first with member counts; choose a pack number to preview its full
 membership before separate approval. No member is silently dropped.
 
-For **Add skills or packs to a tool**, choose Claude Code, Codex, Pi or
-OpenCode and all-projects/project scope first. Then select saved skills by number,
-filter with `/word`, or type `ready`. Newly collected skills are suggestions.
-Review exact destinations and approve separately with `y`; Enter skips tool
-changes. Ordinary skills need no executable path; selected advanced items keep
-their version and trust checks. This does not install tools or connect accounts.
+For **Add saved skills or packs to a tool**, choose Claude Code, Codex, Pi or
+OpenCode and all-projects/project scope first. Preview ready skills from your
+latest collection batch, or select specific items and filter by name with `/word`.
+Review exact destinations and approve separately with `y` then Enter. Enter
+alone skips tool changes. Ordinary skills need no executable path. Selected
+advanced items keep their version and trust checks. This does not install
+tools or connect accounts.
 
 The compact saved-item rows show a next step. `This page` counts only the displayed
 page. Use `why N` for an item's description and exact incompatibility reasons,
@@ -99,9 +97,10 @@ needs a separate placement preview and confirmation.
 `ready` checks all matching pages and selects skills ready to add/update, excluding
 already-current, blocked and checked-after-selection items. Packs need an explicit
 number. `all` keeps every matching item; one blocked item stops the batch before
-approval. Press `r` to preview ready items from that selection, or choose
-different items. Type `help` for all selection commands. Unchanged managed copies stay current after another skill is collected,
-with a confirmed receipt refresh and no file rewrite.
+approval. Choose `r` and press Enter to preview ready items from that selection,
+or choose different items. Type `help` for all selection commands. Unchanged
+managed copies stay current after another skill is collected, with a confirmed
+receipt refresh and no file rewrite.
 
 Ready is not a claim that the tool cannot already discover a copy elsewhere.
 OpenCode can find Claude/shared skills; adding an OpenCode copy creates a separate
@@ -118,7 +117,8 @@ checks metadata, not private state-file contents, and grants no trust or ownersh
 This diagnostic does not establish the cause of a reported failure on another Mac.
 
 Run `kitrove --help` for a short command list and `kitrove apply --help` for
-focused help. On macOS, see the [retained file recovery guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.22/docs/QUARANTINE-RECOVERY.md)
+focused help. On macOS, **Check collection storage** can preview preservation
+of eligible retained files. See the [retained file recovery guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.23/docs/QUARANTINE-RECOVERY.md)
 if doctor reports a different device ID and matching file ID. Start with a
 read-only preview.
 
@@ -131,7 +131,7 @@ payloads, credentials and native lifecycle directives remain unsupported.
 Original sources remain unchanged.
 
 See the [current quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/main/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.22 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.22).
+and [RC5.23 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.23).
 
 When sharing, choose a shared folder or **Git repository**. Paste an existing
 clone URL or type `c` for instructions to create an empty private repository on
@@ -220,7 +220,11 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.22 release review
+## RC5.23 release review
+
+See the [RC5.23 review](REVIEW-RC523.md) for provenance and the cask checks.
+
+## Historical RC5.22 release review
 
 See the [RC5.22 review](REVIEW-RC522.md) for provenance and the cask checks.
 
