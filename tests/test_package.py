@@ -39,28 +39,31 @@ PREVIEW_CASK = '''cask "kitrove-rc@5.5" do
 end
 '''
 
-CURRENT_CASK = PREVIEW_CASK.replace('cask "kitrove-rc@5.5" do', 'cask "kitrove" do').replace(
-    'name "Kitrove RC5.5 Preview"', 'name "Kitrove"'
-).replace(
-    'conflicts_with cask: "kitrove-rc"',
-    'conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]'
-).replace(
-    'version "0.1.0-rc.5.5"', 'version "0.1.0-rc.5.24"'
-).replace(
-    'sha256 "7e603b3a9fb7dc855dcb693dac9b1729310e29531559708fd647d76e28f25f81"',
-    'sha256 "5189f066efe4e09a4fb0995307a858df1e89c1335f423513a04f627c5b31370d"'
-).replace(
-    'open RC5.5 collections', 'open RC5.24 collections'
-).replace(
-    '''    Fresh-install evaluation only; not an RC4.2 upgrade or migration.
-    Use a new isolated collection and empty destinations with disposable capabilities.
-    Do not open RC4.2 collections or use RC4.2 to open RC5.24 collections.
-    Homebrew manages this executable, not your Kitrove state.
-    Do not point kitrove-installer at this Homebrew-managed installation.
-    Clean-Mac online/offline first launch remains unverified.''',
-    '''    Fresh-install preview. Start with: kitrove
-    Setup and compatibility: https://kitrove.dev/docs/'''
-)
+CURRENT_CASK = '''cask "kitrove" do
+  version "0.1.0"
+  sha256 "9e2cafbc025a4ae72e9715b6e3ad3f50fad37b3c5deef3905ee6927e0865da16"
+
+  url "https://github.com/Kapital-Labs/kitrove/releases/download/v#{version}/kitrove-cli-aarch64-apple-darwin.tar.xz"
+  name "Kitrove"
+  desc "Portable agent environment management"
+  homepage "https://github.com/Kapital-Labs/kitrove"
+
+  livecheck do
+    skip "Updates require reviewed provenance and native acceptance"
+  end
+
+  conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]
+  depends_on arch: :arm64
+  depends_on :macos
+
+  binary "kitrove-cli-aarch64-apple-darwin/kitrove"
+
+  caveats <<~EOS
+    Start with: kitrove
+    Setup and compatibility: https://kitrove.dev/docs/
+  EOS
+end
+'''
 
 
 class PackageTests(unittest.TestCase):
@@ -81,24 +84,24 @@ class PackageTests(unittest.TestCase):
         self.assertFalse(cask.is_symlink())
         self.assertEqual(cask.read_text(), PREVIEW_CASK)
 
-    def test_current_cask_is_exact_preview_without_automatic_replacement(self):
+    def test_current_cask_is_exact_without_automatic_replacement(self):
         cask = ROOT / "Casks/kitrove.rb"
         self.assertTrue(cask.is_file(), "plain kitrove cask is required")
         self.assertFalse(cask.is_symlink())
         self.assertEqual(cask.read_text(), CURRENT_CASK)
 
-    def test_primary_instructions_use_current_name_and_keep_preview_boundary(self):
+    def test_primary_instructions_use_current_name(self):
         readme = (ROOT / "README.md").read_text()
         install = readme.split("## Install\n", 1)[1].split("## Start", 1)[0]
         self.assertIn("brew install --cask kapital-labs/tap/kitrove\n", install)
         self.assertNotIn("brew install --cask kapital-labs/tap/kitrove-rc", install)
-        self.assertIn("v0.1.0-rc.5.24", install)
-        self.assertIn("not a stable release", install)
+        self.assertIn("v0.1.0", install)
+        self.assertIn("signed CLI from `v0.1.0`", install)
         self.assertIn("## Existing installations", readme)
 
-    def test_current_channel_selects_reviewed_rc524_without_changing_old_casks(self):
+    def test_current_channel_selects_reviewed_010_without_changing_old_casks(self):
         current = (ROOT / "Casks/kitrove.rb").read_text()
-        self.assertIn('version "0.1.0-rc.5.24"', current)
+        self.assertIn('version "0.1.0"', current)
         self.assertIn('conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]', current)
         self.assertEqual(hashlib.sha256((ROOT / "Casks/kitrove-rc@5.5.rb").read_bytes()).hexdigest(),
                          "816c4c8e37215e61df182b66f865997ec689d84da648eac7379f7d64f3c165d1")
@@ -106,7 +109,7 @@ class PackageTests(unittest.TestCase):
     def test_latest_onboarding_covers_numbered_exclusions_and_keeps_confirmation(self):
         readme = (ROOT / "README.md").read_text()
         install = readme.split("## Install\n", 1)[1].split("## Start", 1)[0]
-        self.assertIn("v0.1.0-rc.5.24", install)
+        self.assertIn("v0.1.0", install)
         self.assertIn("all,-3,-8", readme)
         self.assertIn("Enter previews", readme)
         self.assertIn("sequential", readme)
@@ -116,7 +119,7 @@ class PackageTests(unittest.TestCase):
         current = (ROOT / "Casks/kitrove.rb").read_text()
         caveats = current.split("  caveats <<~EOS\n", 1)[1].split("  EOS\n", 1)[0]
         self.assertEqual([line.strip() for line in caveats.splitlines()], [
-            "Fresh-install preview. Start with: kitrove",
+            "Start with: kitrove",
             "Setup and compatibility: https://kitrove.dev/docs/",
         ])
 
@@ -124,8 +127,8 @@ class PackageTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text()
         for guidance in (
             "new isolated collection and empty destinations",
-            "RC4.2 cannot read RC5.24 authored-pack collections",
-            "Do not point `kitrove-installer` at a Brew-managed installation",
+            "Keep legacy RC4.2 collections separate",
+            "Homebrew manages the executable installed by this cask",
             "Uninstall does not remove Kitrove data or harness configuration",
             "not clean-Mac/offline first launch",
             "do not force an overwrite",

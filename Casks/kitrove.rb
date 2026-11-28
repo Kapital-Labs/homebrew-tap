@@ -1,6 +1,6 @@
 cask "kitrove" do
-  version "0.1.0-rc.5.24"
-  sha256 "5189f066efe4e09a4fb0995307a858df1e89c1335f423513a04f627c5b31370d"
+  version "0.1.0"
+  sha256 "9e2cafbc025a4ae72e9715b6e3ad3f50fad37b3c5deef3905ee6927e0865da16"
 
   url "https://github.com/Kapital-Labs/kitrove/releases/download/v#{version}/kitrove-cli-aarch64-apple-darwin.tar.xz"
   name "Kitrove"
@@ -8,7 +8,7 @@ cask "kitrove" do
   homepage "https://github.com/Kapital-Labs/kitrove"
 
   livecheck do
-    skip "Release candidates require reviewed provenance and native acceptance"
+    skip "Updates require reviewed provenance and native acceptance"
   end
 
   conflicts_with cask: ["kitrove-rc", "kitrove-rc@5.5"]
@@ -18,7 +18,7 @@ cask "kitrove" do
   binary "kitrove-cli-aarch64-apple-darwin/kitrove"
 
   caveats <<~EOS
-    Fresh-install preview. Start with: kitrove
+    Start with: kitrove
     Setup and compatibility: https://kitrove.dev/docs/
   EOS
 end
