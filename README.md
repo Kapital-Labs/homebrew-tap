@@ -1,7 +1,7 @@
 # Kitrove Homebrew tap
 
-Official experimental packages for [Kitrove](https://github.com/Kapital-Labs/kitrove).
-The release-candidate casks support **Apple Silicon macOS only**.
+Official Homebrew packages for [Kitrove](https://github.com/Kapital-Labs/kitrove)
+on Apple Silicon macOS.
 
 ## Install
 
@@ -13,22 +13,16 @@ kitrove --version
 kitrove --help
 ```
 
-The install message shows only the fresh-install preview label, `kitrove`
-and the [setup and compatibility guide](https://kitrove.dev/docs/). The detailed
-preview boundaries below remain unchanged.
+The `kitrove` cask installs the signed CLI from `v0.1.0`. Run `kitrove` to
+start. See the [setup and compatibility guide](https://kitrove.dev/docs/) for
+the supported installation paths. To try Kitrove with disposable skills, use a
+new isolated collection and empty destinations.
 
-The `kitrove` cask installs the latest reviewed preview, currently the signed CLI
-from `v0.1.0-rc.5.24`. This is **not a stable release**.
-It does not run a separate Kitrove installer, initialize Kitrove, or change harness
-configuration. This is a **fresh-install evaluation preview**. Use a
-new isolated collection and empty destinations with synthetic or disposable
-capabilities. RC4.2 cannot read RC5.24 authored-pack collections; binary rollback
-does not roll collection data backward. No rollback-compatible predecessor is
-declared, and installer refusals must not be bypassed.
-
-New preview versions are selected by reviewed package updates, not automatic
-latest-release discovery. Future updates still require compatibility and recovery
-review. Do not point `kitrove-installer` at a Brew-managed installation.
+Homebrew manages the executable installed by this cask. Keep using Homebrew
+for updates. It leaves Kitrove collections, local state and tool configuration
+in place. Keep legacy RC4.2 collections separate and back up your collection
+before changing versions. Binary rollback leaves collection data at its current
+state.
 
 ## Start the walkthrough
 
@@ -119,7 +113,7 @@ This diagnostic does not establish the cause of a reported failure on another Ma
 
 Run `kitrove --help` for a short command list and `kitrove apply --help` for
 focused help. On macOS, **Check collection storage** can preview preservation
-of eligible retained files. See the [retained file recovery guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0-rc.5.24/docs/QUARANTINE-RECOVERY.md)
+of eligible retained files. See the [retained file recovery guide](https://github.com/Kapital-Labs/kitrove/blob/v0.1.0/docs/QUARANTINE-RECOVERY.md)
 if doctor reports a different device ID and matching file ID. Start with a
 read-only preview.
 
@@ -132,7 +126,7 @@ payloads, credentials and native lifecycle directives remain unsupported.
 Original sources remain unchanged.
 
 See the [current quick collection guide](https://github.com/Kapital-Labs/kitrove/blob/main/docs/SETUP-QUICK-ADOPTION.md)
-and [RC5.24 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0-rc.5.24).
+and [0.1.0 release notes](https://github.com/Kapital-Labs/kitrove/releases/tag/v0.1.0).
 
 When sharing, choose a shared folder or **Git repository**. Paste an existing
 clone URL or type `c` for instructions to create an empty private repository on
@@ -165,10 +159,10 @@ renamed or replaced by `kitrove`. All three casks share the same executable name
 The new cask explicitly conflicts with both older tokens. An occupied executable
 also refuses installation without replacing it.
 
-This is not an RC4.2 upgrade or migration. Do not uninstall an existing installation
-or remove its state merely to bypass a conflict; review ownership and recovery
-needs first. Preserve collections and local state. Do not force an overwrite,
-use `--zap`, or open an older collection with a new preview as a migration shortcut.
+The older RC4.2 and RC5.5 casks have separate storage and compatibility guidance.
+Review executable ownership and recovery needs before changing casks. Preserve
+collections and local state. Do not force an overwrite or use `--zap` to get
+past a conflict.
 
 ### Historical RC4.2 channel
 
@@ -221,7 +215,11 @@ First launch may require network access. This remains a prerelease, not stable
 support. Homebrew replacement does not provide the custom installer's state locks,
 retained rollback kits or recovery protocol. Binary downgrade is not data rollback.
 
-## RC5.24 release review
+## 0.1.0 release review
+
+See the [0.1.0 review](REVIEW-010.md) for provenance and package checks.
+
+## Historical RC5.24 release review
 
 See the [RC5.24 review](REVIEW-RC524.md) for provenance and the cask checks.
 
